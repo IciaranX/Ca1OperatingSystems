@@ -7,8 +7,19 @@ using std::string;
 
 class Jobs
 {
+ private:
+  String JobName;
+  int ArrivalTime;
+  int JobDuration;
  public:
   Jobs();
-  String Main();
+  void setJobName(String A);
+  void setArrivalTime(int b);
+  void setJobDuration(int c);
+
+  String getJobname();
+  int getArrivalTime();
+  int getJobDuration();
+  
   ~Jobs();
 }
