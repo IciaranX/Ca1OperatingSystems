@@ -1,39 +1,41 @@
 //to code
-#incude "Jobs.h"
+#include "Jobs.h"
+#include "stdafx.h"
+
 
 Jobs::Jobs()
 {
-  String JobName = "";
-  int ArrivalTime = 0;
-  int JobDuration = 0;
+	string JobName = "";
+	int ArrivalTime = 0;
+	int JobDuration = 0;
 }
 
-void Jobs::setJobName(String A)
+void Jobs::setJobName(string a)
 {
-  JobName = a;
+	JobName = a;
 }
 
 void Jobs::setArrivalTime(int b)
 {
-  ArrivalTime = b;
+	ArrivalTime = b;
 }
 
 void Jobs::setJobDuration(int c)
 {
-  JobDuration = c;
+	JobDuration = c;
 }
 
-String Jobs::getJobName()
+string Jobs::getJobname()
 {
-  return JobName;
+	return JobName;
 }
 
 int Jobs::getArrvalTime()
 {
-  return ArrivalTime;
+	return ArrivalTime;
 }
 
 int Jobs::getJobDuration()
 {
-  return JobDuration;
+	return JobDuration;
 }
