@@ -1,24 +1,22 @@
-#pragma once
-
 #include <string>
+
 using std::string;
 
 class Jobs
 {
  private:
-  string JobName;
-  int ArrivalTime;
-  int JobDuration;
-
+  string jobName;
+  int arrivedTime;
+  int jobDuration;
  public:
   Jobs();
-  void setJobName(String A);
-  void setArrivalTime(int b);
-  void setJobDuration(int c);
+  void setjobName(string a);
+  void setArrivedTime(int b);
+  void setjobDuration(int c);
 
-  string getJobname();
-  int getArrivalTime();
-  int getJobDuration();
-  
+  string getjobName();
+  int getArrivedTime();
+  int getjobduration();
+
   ~Jobs();
 };
