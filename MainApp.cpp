@@ -20,8 +20,8 @@ using namespace std;
 using namespace std;
 
 void readFile(vector<Jobs>&);
-//void printFileVector(const vector<Jobs>&);
-//void printOutput(const vector<Jobs>&);
+void printFileVector(vector<Jobs>&);
+void printFOFO(vector<Jobs>&);
 
 bool sortArrival(Jobs &j1, Jobs &j2) { return j1.getArrivedTime() < j2.getArrivedTime(); }
 bool sortDuration(Jobs &j1, Jobs &j2) { return j1.getjobduration() < j2.getjobduration(); }
@@ -30,10 +30,10 @@ int main() {
   vector<Jobs> jobs;
   vector<Jobs> sorted_jobs;
   readFile(jobs);
-  sort(jobs.begin(), jobs.end(), sortArrival);
-
-  // printFileVector(jobs);
-  //  printOutput(jobs);
+  cout << "unsorted job list" << endl;
+   printFileVector(jobs);
+   cout << "Fifo sorted jobs" << endl;
+   printFOFO(jobs);
 
   return 0;
 }
@@ -46,6 +46,9 @@ void readFile(vector<Jobs>& newJobVector) {
   string job_name;
   int arr_time, run_time;
 
+  
+  
+  
   if (inFile.is_open()) {
     getline(inFile, line);
     inFile >> job_name >> arr_time >> run_time;
@@ -69,7 +72,7 @@ void readFile(vector<Jobs>& newJobVector) {
       newJob.setjobDuration(run_time);
       newJobVector.push_back(newJob);
       i++;
-      cout << "Job found!" << endl;
+      
     }
   }
   else {
@@ -81,3 +84,43 @@ void readFile(vector<Jobs>& newJobVector) {
   inFile.close();
 }
 
+void printFileVector(vector<Jobs>& myVector) {
+  
+  cout << "--------------------------------------------" << endl;
+  cout << "JOB_NAME\tARRIVAL_TIME\tDURATION" << endl;
+  cout << "--------------------------------------------" << endl;
+  unsigned int size = myVector.size();
+  for (unsigned int i = 0; i < size; i++){
+    cout << myVector[i].getjobName() << "\t\t" << myVector[i].getArrivedTime() << "\t\t" << myVector[i].getjobduration() << endl;
+  }
+}
+void printFOFO(vector<Jobs>& jobs) {
+  int totalTime = 0;
+  int count = 0;
+  int index = 0;
+  sort(jobs.begin(), jobs.end(), sortArrival);
+  
+  for (int i = 0; i < jobs.size(); ++i)
+    {
+      totalTime += jobs[i].getjobduration();
+    }
+  vector<string> FIFO;
+  for (int j = 0; j < totalTime; j++)
+    {
+      int duration = jobs[index].getjobduration();
+      if (count == jobs[count].getArrivedTime())
+	{
+	  FIFO.push_back(jobs[index].getjobName());
+	  count++;
+	  if (count == duration)
+	    {
+	      index++;
+	      count = 0;
+
+	      
+	    }
+	}
+    }
+
+  printFileVector(jobs);
+}
